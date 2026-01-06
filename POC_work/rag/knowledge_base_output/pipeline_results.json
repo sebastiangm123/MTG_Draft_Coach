@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-01-06T00:57:57.953963",
+  "discovery": {},
+  "scraping": {},
+  "processing": {
+    "articles_processed": 102,
+    "chunks_created": 286,
+    "chunks_stored": 286,
+    "total_chunks_in_db": 167,
+    "vector_db_path": "knowledge_base_output\\vector_db"
+  },
+  "completed_at": "2026-01-06T00:59:08.318483",
+  "success": true
+}

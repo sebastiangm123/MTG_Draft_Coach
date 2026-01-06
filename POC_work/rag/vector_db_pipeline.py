@@ -85,7 +85,11 @@ class EmbeddingGenerator:
                     # Fallback to individual requests
                     batch_embeddings = [self.generate_embedding(text) for text in batch]
             else:
-                batch_embeddings = self.model.encode(batch, convert_to_numpy=False).tolist()
+                # sentence-transformers encode returns list when convert_to_numpy=False
+                batch_embeddings = self.model.encode(batch, convert_to_numpy=False)
+                # Ensure it's a list of lists
+                if not isinstance(batch_embeddings[0], list):
+                    batch_embeddings = [emb.tolist() if hasattr(emb, 'tolist') else emb for emb in batch_embeddings]
             
             all_embeddings.extend(batch_embeddings)
         

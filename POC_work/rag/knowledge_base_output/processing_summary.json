@@ -1,0 +1,16 @@
+{
+  "articles_processed": 102,
+  "chunks_created": 286,
+  "chunks_stored": 286,
+  "vector_db_path": "knowledge_base_output\\vector_db",
+  "embedding_model": "local",
+  "total_chunks_in_db": 167,
+  "sources": {
+    "https://www.mtggoldfish.com": 36,
+    "reddit/r/LimitedResources": 32,
+    "reddit/r/lrcast": 9,
+    "reddit/r/spikes": 12,
+    "https://www.reddit.com/r/lrcast": 11
+  },
+  "completed_at": "2026-01-06T00:59:08.311619"
+}

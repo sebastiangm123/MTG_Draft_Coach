@@ -1,0 +1,8 @@
+{
+  "total_locations": 712,
+  "scraped": 77,
+  "failed": 635,
+  "skipped": 0,
+  "output_dir": "knowledge_base_output\\scraped_knowledge",
+  "completed_at": "2026-01-05T23:30:54.114986"
+}
