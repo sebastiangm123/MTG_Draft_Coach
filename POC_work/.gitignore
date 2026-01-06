@@ -36,3 +36,11 @@ validation_outputs/*.csv
 # Keep sample files if needed (uncomment to track)
 # !*_sample.csv
 # !*_sample.parquet
+
+# Scraped content and vector database
+scraped_content/
+processed_content/
+vector_db/
+rag/scraped_content/
+rag/processed_content/
+rag/vector_db/

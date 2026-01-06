@@ -1,0 +1,30 @@
+# MTG Draft Coach - Test Queries
+# One query per line, # for comments
+
+# Basic queries
+What's the win rate of Invasion Submersible?
+Compare Lightning Bolt vs Counterspell
+What's the best WU deck?
+
+# Abbreviation tests
+What's the gih wr of invasion submersible?
+p1p1 invasion submersible good?
+What's the cmc of lightning bolt?
+
+# Pick-specific queries
+What should I pick at pick 5?
+What's good for pick 1 pack 2?
+Best card at pick 3?
+
+# Deck building
+What deck should I build?
+How do I build a WU deck?
+
+# Archetype queries
+What does WU do in TLA?
+How does the WU archetype work?
+
+# Draft direction
+What direction should I draft?
+What colors should I be in?
+
