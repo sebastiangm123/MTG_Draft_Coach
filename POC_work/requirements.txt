@@ -1,0 +1,22 @@
+# Requirements for MTG Draft Coach POC
+
+# OpenAI API
+openai>=1.0.0
+
+# HTTP requests for Scryfall API
+requests>=2.31.0
+
+# Progress bars (optional but recommended for large files)
+tqdm>=4.66.0
+
+# Parquet support (recommended for large files)
+pandas>=2.0.0
+pyarrow>=14.0.0
+
+# Pretty printing (optional but recommended)
+rich>=13.0.0
+
+# Note: No additional dependencies needed for:
+# - Draft data processing (uses standard library: csv, sqlite3)
+# - Log reading (uses standard library)
+

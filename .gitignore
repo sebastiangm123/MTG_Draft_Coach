@@ -1,0 +1,38 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment variables
+.env
+.venv
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large data files (add specific files if you want to track samples)
+*.csv
+*.parquet
+validation_outputs/*.csv
+
+# Keep sample files if needed (uncomment to track)
+# !*_sample.csv
+# !*_sample.parquet
