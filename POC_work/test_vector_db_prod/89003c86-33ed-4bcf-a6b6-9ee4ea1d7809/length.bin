@@ -1,0 +1,14 @@
+    int_value INTEGER,
+    float_value REAL,
+    PRIMARY KEY (segment_id, key)
+);
+2913cb6a503055a95f625448037e8912ƒ+	E…SMsysdb00001-collections.sqlite.sqlCREATE TABLE collections (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    topic TEXT NOT NULL,
+    UNIQUE (name)
+);
+
+CREATE TABLE collection_metadata (
+    collection_id TEXT REFERENCES collections(id) ON DELETE CASCADE,
+    key TEXT NOT
