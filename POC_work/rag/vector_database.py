@@ -116,12 +116,18 @@ class VectorDatabase:
             batch_texts = texts[i:i + batch_size]
             batch_metadatas = metadatas[i:i + batch_size]
             
+            # Clean metadata: remove None values (ChromaDB doesn't accept None)
+            cleaned_metadatas = []
+            for metadata in batch_metadatas:
+                cleaned = {k: v for k, v in metadata.items() if v is not None}
+                cleaned_metadatas.append(cleaned)
+            
             try:
                 self.collection.add(
                     ids=batch_ids,
                     embeddings=batch_embeddings,
                     documents=batch_texts,
-                    metadatas=batch_metadatas
+                    metadatas=cleaned_metadatas
                 )
                 logger.debug(f"Added batch {i//batch_size + 1}: {len(batch_ids)} chunks")
             except Exception as e:
@@ -180,13 +186,19 @@ class VectorDatabase:
         Retrieve chunks by their IDs.
         
         Args:
-            chunk_ids: List of chunk IDs to retrieve
+            chunk_ids: List of chunk IDs to retrieve (duplicates will be removed)
             
         Returns:
             List of chunk dictionaries
         """
         try:
-            results = self.collection.get(ids=chunk_ids)
+            # Remove duplicates while preserving order
+            unique_ids = list(dict.fromkeys(chunk_ids))
+            
+            if not unique_ids:
+                return []
+            
+            results = self.collection.get(ids=unique_ids)
             
             formatted_results = []
             if results['ids']:

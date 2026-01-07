@@ -1,0 +1,4 @@
+invalid type: string "Card: Invasion Submersible\nSet: TLA\nType: Artifact — Vehicle\nCMC: 3, Colors: Blue, Rarity: Uncommon\n\nPerformance Statistics:\n  Opening Hand Win Rate: 61.71% (11,722 games)\n  Drawn Win Rate: 63.59% (18,664 games)\n  Overall Win Rate: 62.65% (63,492 games)\n  Average Pick Number: 2.50\n  Maindeck Rate: 87.67%", expected i64tion.
+
+        Args:
+            timeout_milli

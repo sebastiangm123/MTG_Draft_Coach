@@ -140,20 +140,27 @@ class TextChunker:
         
         text = "\n".join(lines)
         
-        # Build metadata
+        # Build metadata (only include non-None values for ChromaDB compatibility)
         metadata = {
             "chunk_type": ChunkType.CARD.value,
             "card_id": card.card_id,
             "card_name": card.card_name.lower(),
             "set": card.set,
-            "color_identity": card.color_identity or "",
-            "cmc": card.cmc,
-            "rarity": card.rarity or "",
-            "gih_wr": card.gih_wr,
-            "drawn_wr": card.drawn_wr,
-            "overall_wr": card.overall_wr,
-            "avg_pick_number": card.avg_pick_number,
         }
+        if card.color_identity:
+            metadata["color_identity"] = card.color_identity
+        if card.cmc is not None:
+            metadata["cmc"] = card.cmc
+        if card.rarity:
+            metadata["rarity"] = card.rarity
+        if card.gih_wr is not None:
+            metadata["gih_wr"] = card.gih_wr
+        if card.drawn_wr is not None:
+            metadata["drawn_wr"] = card.drawn_wr
+        if card.overall_wr is not None:
+            metadata["overall_wr"] = card.overall_wr
+        if card.avg_pick_number is not None:
+            metadata["avg_pick_number"] = card.avg_pick_number
         
         chunk_id = f"card_{card.card_id}_{card.set}"
         
@@ -198,22 +205,30 @@ class TextChunker:
         
         text = "\n".join(lines)
         
-        # Build metadata
+        # Build metadata (only include non-None values)
         metadata = {
             "chunk_type": ChunkType.ARCHETYPE.value,
             "archetype_id": archetype.archetype_id,
             "main_colors": archetype.main_colors,
-            "splash_colors": archetype.splash_colors or "",
-            "full_color_identity": archetype.full_color_identity,
             "set": archetype.set,
-            "event_type": archetype.event_type or "",
-            "win_rate": archetype.win_rate,
-            "total_games": archetype.total_games,
         }
+        if archetype.splash_colors:
+            metadata["splash_colors"] = archetype.splash_colors
+        if archetype.full_color_identity:
+            metadata["full_color_identity"] = archetype.full_color_identity
+        if archetype.event_type:
+            metadata["event_type"] = archetype.event_type
+        if archetype.win_rate is not None:
+            metadata["win_rate"] = archetype.win_rate
+        if archetype.total_games is not None:
+            metadata["total_games"] = archetype.total_games
         
-        chunk_id = f"archetype_{archetype.main_colors}_{archetype.set}"
+        # Ensure unique chunk ID (include archetype_id to ensure uniqueness)
+        chunk_id = f"archetype_{archetype.archetype_id}_{archetype.main_colors}_{archetype.set}"
         if archetype.event_type:
             chunk_id += f"_{archetype.event_type}"
+        else:
+            chunk_id += "_default"
         
         return TextChunk(
             chunk_id=chunk_id,
@@ -252,18 +267,25 @@ class TextChunker:
         
         text = "\n".join(lines)
         
-        # Build metadata
+        # Build metadata (only include non-None values)
         metadata = {
             "chunk_type": ChunkType.DRAFT_PATTERN.value,
             "set": pattern.set,
-            "event_type": pattern.event_type or "",
-            "pack_number": pattern.pack_number,
-            "pick_number": pattern.pick_number,
-            "card_id": pattern.card_id,
-            "card_name": pattern.card_name.lower() if pattern.card_name else "",
-            "count": pattern.count,
-            "avg_maindeck_rate": pattern.avg_maindeck_rate,
         }
+        if pattern.event_type:
+            metadata["event_type"] = pattern.event_type
+        if pattern.pack_number is not None:
+            metadata["pack_number"] = pattern.pack_number
+        if pattern.pick_number is not None:
+            metadata["pick_number"] = pattern.pick_number
+        if pattern.card_id is not None:
+            metadata["card_id"] = pattern.card_id
+        if pattern.card_name:
+            metadata["card_name"] = pattern.card_name.lower()
+        if pattern.count is not None:
+            metadata["count"] = pattern.count
+        if pattern.avg_maindeck_rate is not None:
+            metadata["avg_maindeck_rate"] = pattern.avg_maindeck_rate
         
         chunk_id = f"pattern_{pattern.set}_{pattern.pack_number}_{pattern.pick_number}_{pattern.card_id}"
         
